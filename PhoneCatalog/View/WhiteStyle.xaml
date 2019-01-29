@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PhoneCatalog.View">
+    <Style TargetType="Window">
+        <Setter Property="Background" Value="#1C1C1C"></Setter>
+        <Setter Property="FontSize" Value="25"></Setter>
+    </Style>
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="#C2C0F3"></Setter>
+    </Style>
+    
+</ResourceDictionary>
