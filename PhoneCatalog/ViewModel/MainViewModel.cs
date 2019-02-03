@@ -86,6 +86,12 @@ namespace PhoneCatalog.ViewModel
         public ICommand DeleteCommand { get; set; }
         public ICommand ClosingCommand { get; set; }
         public ICommand LocCommand { get; set; }
+        public ICommand SortManufacturer { get; set; }
+        public ICommand SortRAM { get; set; }
+        public ICommand SortPrice { get; set; }
+        public ICommand SortMemory { get; set; }
+        public ICommand SortOS { get; set; }
+        public ICommand SortModel { get; set; }
         #endregion
 
         public MainViewModel(ISaver saver,ISaverStyle saverStyle,ILoaderStyle loaderStyle )
@@ -103,6 +109,12 @@ namespace PhoneCatalog.ViewModel
             DeleteCommand = new RelayCommand(Delete);
             ClosingCommand = new RelayCommand(x => Application.Current.MainWindow.Close());
             LocCommand = new RelayCommand(Langusge);
+            SortModel = new RelayCommand(ModelSort);
+            SortManufacturer = new RelayCommand(ManufacturerSort);
+            SortMemory = new RelayCommand(MemorySort);
+            SortPrice = new RelayCommand(PriceSort);
+            SortRAM = new RelayCommand(RAMSort);
+            SortOS = new RelayCommand(OSSort);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void Notify([CallerMemberName] string propName = "")
@@ -111,6 +123,37 @@ namespace PhoneCatalog.ViewModel
         }
 
         #region Metods
+
+        private void ModelSort(object a)
+        {
+            Phones = new ObservableCollection<Phone>(Phones.OrderBy(x => x.Model));
+        }
+
+        private void MemorySort(object a)
+        {
+            Phones = new ObservableCollection<Phone>(Phones.OrderBy(x => x.Memory));
+        }
+
+        private void RAMSort(object a)
+        {
+            Phones = new ObservableCollection<Phone>(Phones.OrderBy(x => x.RAM));
+        }
+
+        private void PriceSort(object a)
+        {
+            Phones = new ObservableCollection<Phone>(Phones.OrderBy(x => x.Price));
+        }
+
+        private void OSSort(object a)
+        {
+            Phones = new ObservableCollection<Phone>(Phones.OrderBy(x => x.OperatingSystem));
+        }
+
+        private void ManufacturerSort(object a)
+        {
+            Phones = new ObservableCollection<Phone>(Phones.OrderBy(x => x.Manufacturer));
+        }
+
         private void Load(object a)
         {
             switch(SelectedStyle)
@@ -210,18 +253,14 @@ namespace PhoneCatalog.ViewModel
             switch (SelectedLanguage)
             {
                 case 0:
-                    Localisation localisation = new Localisation();
-                    localisation.English = true;
-                    LocalisationProp = localisation;
+                    LocalisationProp.English = false;
+                    LocalisationProp.LocalosationAdd();
                     Notify();
-                    MessageBox.Show("UK");
                     break;
                 case 1:
-                    Localisation localisation1 = new Localisation();
-                    localisation1.English = false;
-                    LocalisationProp = localisation1;
+                    LocalisationProp.English = true;
+                    LocalisationProp.LocalosationAdd();
                     Notify();
-                    MessageBox.Show("RUS");
                     break;
             }
         }

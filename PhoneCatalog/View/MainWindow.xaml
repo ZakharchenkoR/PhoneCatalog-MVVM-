@@ -35,17 +35,17 @@
             </Grid.ColumnDefinitions>
             <!--Menu-->
             <Menu Grid.Column="0" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Margin="22,4,22,5" Height="18" Width="56">
-                <MenuItem Header="Catalog">
-                    <MenuItem Header="New Phone"  >
+                  HorizontalAlignment="Center" Margin="10,4">
+                <MenuItem Header="{Binding MainViewModel.LocalisationProp.Catalog}">
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.NewPhone}"  >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding MainViewModel.NewPhoneCommand}"  />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </MenuItem>
-                    <MenuItem Header="Save" ></MenuItem>
-                    <MenuItem Header="Exit" >
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Save}" ></MenuItem>
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Exit}" >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding MainViewModel.ClosingCommand}"  />
@@ -56,18 +56,14 @@
             </Menu>
             <!--Sort-->
             <Menu Grid.Column="1" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Margin="22,4,23,5" Height="18" Width="56">
-                <MenuItem Header="Sorts">
-                    <MenuItem Header="Manufacturer"  >
-
-                    </MenuItem>
-                    <MenuItem Header="Model" ></MenuItem>
-                    <MenuItem Header="OS" ></MenuItem>
-                    <MenuItem Header="RAM" >
-
-                    </MenuItem>
-                    <MenuItem Header="Memory" ></MenuItem>
-                    <MenuItem Header="Price" ></MenuItem>
+                  HorizontalAlignment="Center" Margin="10,4,10,4" Height="18" >
+                <MenuItem Header="{Binding MainViewModel.LocalisationProp.Sort}">
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Manufacturer}" Command="{Binding MainViewModel.SortManufacturer}"  ></MenuItem>
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Model}"  Command="{Binding MainViewModel.SortModel}"></MenuItem>
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.OS}" Command="{Binding MainViewModel.SortOS}"></MenuItem>
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.RAM}" Command="{Binding MainViewModel.SortRAM}"></MenuItem>
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Memory}" Command="{Binding MainViewModel.SortMemory}"></MenuItem>
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Price}" Command="{Binding MainViewModel.SortPrice}"></MenuItem>
                 </MenuItem>
             </Menu>
             <!--Slider-->
@@ -78,7 +74,7 @@
                                 SelectionStart="100"
                                 SelectionEnd="400"
                                 IsSelectionRangeEnabled="True"
-                                Name="_slider" Margin="165,6,79,3" Height="18"
+                                Name="_slider" Margin="30,6,30,6" Height="18"
                                 />
             <!--English or Russian-->
             <ComboBox  Grid.Column="3"
@@ -112,7 +108,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBoxItem>
-                <ComboBoxItem Content="{Binding MainViewModel.LocalisationProp.WhiteStyhle}">
+                <ComboBoxItem Content="{Binding MainViewModel.LocalisationProp.WhiteStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Selected">
                             <i:InvokeCommandAction Command="{Binding MainViewModel.WhiteStyleCommand}"></i:InvokeCommandAction>
@@ -180,13 +176,13 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <!--ListBox-->
-                <DataGrid AutoGenerateColumns="False" Background="Aqua"
+                <DataGrid AutoGenerateColumns="False"
                       ItemsSource="{Binding MainViewModel.Phones}"                   
                       SelectedItem="{Binding MainViewModel.SelectedPhone}" 
                       RenderTransformOrigin="0.5,0.539">
                     <DataGrid.Columns>
-                        <DataGridTextColumn  Width="3*"  Header="Manufacturer" Binding="{Binding Manufacturer}"></DataGridTextColumn>
-                        <DataGridTextColumn  Width="3*" Header="Model" Binding="{Binding Model}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="2*" Header="{Binding LocalisationProp.Manufacturer}" Binding="{Binding Manufacturer}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="2*" Header="Model" Binding="{Binding Model}"></DataGridTextColumn>
                         <DataGridTextColumn Width="4*" Header="Processor" Binding="{Binding Processor}"></DataGridTextColumn>
                         <DataGridTextColumn Width="2*" Header="OS" Binding="{Binding OperatingSystem}"></DataGridTextColumn>
                         <DataGridTextColumn Width="2*" Header="RAM" Binding="{Binding RAM}"></DataGridTextColumn>
@@ -226,9 +222,9 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Margin="30,5" Grid.Column="0" Command="{Binding MainViewModel.NewPhoneCommand}">Add New Phone</Button>
-                        <Button Margin="30,5" Grid.Column="1" Command="{Binding MainViewModel.UpdateCommand}">Update</Button>
-                        <Button Margin="30,5" Grid.Column="2" Command="{Binding MainViewModel.CopyCommand}">Copy</Button>
+                        <Button Margin="30,5" Grid.Column="0" Content="{Binding MainViewModel.LocalisationProp.NewPhone}" Command="{Binding MainViewModel.NewPhoneCommand}"></Button>
+                        <Button Margin="30,5" Grid.Column="1" Content="{Binding MainViewModel.LocalisationProp.Update}" Command="{Binding MainViewModel.UpdateCommand}"></Button>
+                        <Button Margin="30,5" Grid.Column="2" Content="{Binding MainViewModel.LocalisationProp.Copy}" Command="{Binding MainViewModel.CopyCommand}"></Button>
                     </Grid>
                 </Border>
             </Grid>

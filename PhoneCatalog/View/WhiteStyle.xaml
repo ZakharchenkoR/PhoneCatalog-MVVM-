@@ -8,5 +8,32 @@
     <Style TargetType="Grid">
         <Setter Property="Background" Value="#C2C0F3"></Setter>
     </Style>
-    
+    <Style TargetType="Menu">
+        <Setter Property="Foreground" Value="Black"></Setter>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="Black"></Setter>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="Button.Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="#a79ec2" Offset="0.5"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Button.Foreground" Value="Black"></Setter>
+        <Setter Property="Button.BorderBrush" >
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="#4e4e4e" Offset="0.5"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
