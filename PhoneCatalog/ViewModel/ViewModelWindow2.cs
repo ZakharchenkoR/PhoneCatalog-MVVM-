@@ -14,17 +14,39 @@ namespace PhoneCatalog.ViewModel
 {
     class ViewModelWindow2 : INotifyPropertyChanged
     {
-        Singleton singleton = Singleton.GetInstance();
+        Singleton singleton;
+        Localisation localisation;
         string manufacturer;
         string model;
         string operaringSystem;
         string processor;
         int ram;
         int memory;
+        int price;
         string uri;
        
 
         #region Propertys
+        public Localisation Localisation
+        {
+            get => localisation;
+            set
+            {
+                localisation = value;
+                Notify();
+            }
+        }
+
+        public int Price
+        {
+            get => price;
+            set
+            {
+                price = value;
+                Notify();
+            }
+        }
+
         public string Manufacturer
         {
             get => manufacturer;
@@ -99,7 +121,9 @@ namespace PhoneCatalog.ViewModel
         public ICommand NewPictureCommand { get; set; }
 
         public ViewModelWindow2()
-        {        
+        {
+            singleton = Singleton.GetInstance();
+            Localisation = singleton.Loc;
             AddPhone = new RelayCommand(NewPhone);
             NewPictureCommand = new RelayCommand(NewPicture);
         }
@@ -117,9 +141,11 @@ namespace PhoneCatalog.ViewModel
             singleton.Processor = this.Processor;
             singleton.RAM = this.RAM;
             singleton.Memory = this.Memory;
+            singleton.Price = this.Price;
             singleton.Uri = this.Uri;
             singleton.Window.Close();
         }
+
         private void NewPicture(object a)
         {
             OpenFileDialog myDialog = new OpenFileDialog();

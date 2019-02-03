@@ -85,6 +85,7 @@ namespace PhoneCatalog.Model
             set
             {
                 price = value;
+                Notify();
             }
         }
 

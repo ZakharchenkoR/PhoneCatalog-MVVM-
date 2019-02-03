@@ -11,12 +11,14 @@ namespace PhoneCatalog.Infrastructure
     {
         public Window1 Window { get; set; }
         public WindowUpdate WindowUpdate { get; set; }
+        public Localisation Loc { get;set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
         public string OperatingSystem { get; set; }
         public string Processor { get; set; }
         public int RAM { get; set; }
         public int Memory { get; set; }
+        public int Price { get; set; }
         public string Uri { get; set; }
 
         private Singleton() { }

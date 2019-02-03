@@ -58,7 +58,7 @@
             <Menu Grid.Column="1" VerticalAlignment="Center" 
                   HorizontalAlignment="Center" Margin="10,4,10,4" Height="18" >
                 <MenuItem Header="{Binding MainViewModel.LocalisationProp.Sort}">
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Manufacturer}" Command="{Binding MainViewModel.SortManufacturer}"  ></MenuItem>
+                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Manufacturer}" Command="{Binding MainViewModel.SortManufacturer}"></MenuItem>
                     <MenuItem Header="{Binding MainViewModel.LocalisationProp.Model}"  Command="{Binding MainViewModel.SortModel}"></MenuItem>
                     <MenuItem Header="{Binding MainViewModel.LocalisationProp.OS}" Command="{Binding MainViewModel.SortOS}"></MenuItem>
                     <MenuItem Header="{Binding MainViewModel.LocalisationProp.RAM}" Command="{Binding MainViewModel.SortRAM}"></MenuItem>
@@ -181,7 +181,7 @@
                       SelectedItem="{Binding MainViewModel.SelectedPhone}" 
                       RenderTransformOrigin="0.5,0.539">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="2*" Header="{Binding LocalisationProp.Manufacturer}" Binding="{Binding Manufacturer}"></DataGridTextColumn>
+                        <DataGridTextColumn Width="2*" Header="Manufacturer" Binding="{Binding Manufacturer}"></DataGridTextColumn>
                         <DataGridTextColumn Width="2*" Header="Model" Binding="{Binding Model}"></DataGridTextColumn>
                         <DataGridTextColumn Width="4*" Header="Processor" Binding="{Binding Processor}"></DataGridTextColumn>
                         <DataGridTextColumn Width="2*" Header="OS" Binding="{Binding OperatingSystem}"></DataGridTextColumn>

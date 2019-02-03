@@ -11,7 +11,10 @@ namespace PhoneCatalog.Infrastructure
     class Localisation:INotifyPropertyChanged
     {
         private bool english = true;
+
         #region Propertys
+      
+
         string blackStyle;
         public string BlackStyle
         {
@@ -190,6 +193,17 @@ namespace PhoneCatalog.Infrastructure
             }
         }
 
+        string processor;
+        public string Processor
+        {
+            get => processor;
+            set
+            {
+                processor = value;
+                Notify();
+            }
+        }
+
         string save;
         public string Save
         {
@@ -208,6 +222,17 @@ namespace PhoneCatalog.Infrastructure
             set
             {
                 exit = value;
+                Notify();
+            }
+        }
+
+        string pictures;
+        public string Pictures
+        {
+            get => pictures;
+            set
+            {
+                pictures = value;
                 Notify();
             }
         }
@@ -234,6 +259,8 @@ namespace PhoneCatalog.Infrastructure
                 Catalog = "Catalog";
                 Exit = "Exit";
                 Save = "Save";
+                Processor = "Processor";
+                Pictures = "Pictures";
             }
             else
             {
@@ -254,6 +281,8 @@ namespace PhoneCatalog.Infrastructure
                 Catalog = "Каталог";
                 Exit = "Выйти";
                 Save = "Сохранить";
+                Processor = "Процесор";
+                Pictures = "Картинка";
             }
         }
 

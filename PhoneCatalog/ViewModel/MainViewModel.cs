@@ -116,6 +116,7 @@ namespace PhoneCatalog.ViewModel
             SortRAM = new RelayCommand(RAMSort);
             SortOS = new RelayCommand(OSSort);
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void Notify([CallerMemberName] string propName = "")
         {
@@ -186,9 +187,10 @@ namespace PhoneCatalog.ViewModel
         }
 
         private void AddNewPhone(object a)
-        {
+        {        
             Singleton singleton = Singleton.GetInstance();
-            Window1 _window = new Window1();
+            singleton.Loc = localisationProp;
+            Window1 _window = new Window1();        
             singleton.Window = _window;
             _window.ShowDialog();
             Phones.Add(new Phone
@@ -199,7 +201,8 @@ namespace PhoneCatalog.ViewModel
                 Processor = singleton.Processor,
                 RAM = singleton.RAM,
                 Memory = singleton.Memory,
-                Uri = singleton.Uri
+                Uri = singleton.Uri,
+                Price = singleton.Price
             });
             Phones = new ObservableCollection<Phone>(Phones);
         }
@@ -209,8 +212,7 @@ namespace PhoneCatalog.ViewModel
             if(SelectedPhone != null)
             {
                 Singleton singleton = Singleton.GetInstance();
-                WindowUpdate update = new WindowUpdate();
-                singleton.WindowUpdate = update;
+                singleton.Loc = LocalisationProp;
                 singleton.Manufacturer = SelectedPhone.Manufacturer;
                 singleton.Model = SelectedPhone.Model;
                 singleton.OperatingSystem = SelectedPhone.OperatingSystem;
@@ -218,7 +220,30 @@ namespace PhoneCatalog.ViewModel
                 singleton.RAM = SelectedPhone.RAM;
                 singleton.Memory = SelectedPhone.Memory;
                 singleton.Uri = SelectedPhone.Uri;
+                singleton.Price = SelectedPhone.Price;
+                WindowUpdate update = new WindowUpdate();
+                singleton.WindowUpdate = update;
                 update.ShowDialog();
+                SelectedPhone.Manufacturer = singleton.Manufacturer;
+                SelectedPhone.Model = singleton.Model;
+                SelectedPhone.Memory = singleton.Memory;
+                SelectedPhone.Processor = singleton.Processor;
+                SelectedPhone.OperatingSystem = singleton.OperatingSystem;
+                SelectedPhone.Price = singleton.Price;
+                SelectedPhone.Uri = singleton.Uri;
+                SelectedPhone.RAM = singleton.RAM;
+                SelectedPhone = null;
+            }
+            else
+            {
+                if (SelectedLanguage == 0)
+                {
+                    MessageBox.Show("Select phone!");
+                }
+                else
+                {
+                    MessageBox.Show("Выберите телефон!");
+                }
             }
         }
 
@@ -238,6 +263,18 @@ namespace PhoneCatalog.ViewModel
                     Uri = SelectedPhone.Uri
                 });
                Phones = new ObservableCollection<Phone>(Phones);
+                SelectedPhone = null;
+            }
+            else
+            {
+                if(SelectedLanguage == 0)
+                {
+                    MessageBox.Show("Select phone!");
+                }
+                else
+                {
+                    MessageBox.Show("Выберите телефон!");
+                }
             }
         }
 

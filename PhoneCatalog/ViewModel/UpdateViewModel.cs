@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Win32;
 using PhoneCatalog.Infrastructure;
 
 namespace PhoneCatalog.ViewModel
 {
     class UpdateViewModel : INotifyPropertyChanged
     {
+        Localisation loc;
         Singleton singleton;
         string manufacturer;
         string model;
@@ -20,10 +22,31 @@ namespace PhoneCatalog.ViewModel
         string processor;
         int ram;
         int memory;
+        int price;
         string uri;
 
 
         #region Propertys
+
+        public Localisation Localisation
+        {
+            get => loc;
+            set
+            {
+                loc = value;
+                Notify();
+            }
+        }
+
+        public int Price
+        {
+            get => price;
+            set
+            {
+                price = value;
+                Notify();
+            }
+        }
         public string Manufacturer
         {
             get => manufacturer;
@@ -95,17 +118,22 @@ namespace PhoneCatalog.ViewModel
         #endregion
 
         public ICommand  UpdateCommand {get; set; }
+        public ICommand AddPicturesCommand { get; set; }
+
         public UpdateViewModel()
         {
             singleton = Singleton.GetInstance();
-            manufacturer = singleton.Manufacturer;
+            loc = singleton.Loc;
+            Manufacturer = singleton.Manufacturer;
             Model = singleton.Model;
             OperatingSystem = singleton.OperatingSystem;
             Processor = singleton.Processor;
             RAM = singleton.RAM;
             Memory = singleton.Memory;
+            Price = singleton.Price;
             Uri = singleton.Uri;
             UpdateCommand = new RelayCommand(Update);
+            AddPicturesCommand = new RelayCommand(NewPicture);
         }
 
 
@@ -117,7 +145,28 @@ namespace PhoneCatalog.ViewModel
 
         private void Update(object a)
         {
-            MessageBox.Show(singleton.Manufacturer);
+            singleton.Manufacturer = this.Manufacturer;
+            singleton.Model = this.Model;
+            singleton.Processor = this.Processor;
+            singleton.OperatingSystem = this.OperatingSystem;
+            singleton.Price = this.Price;
+            singleton.Uri = this.Uri;
+            singleton.Memory = this.Memory;
+            singleton.RAM = this.RAM;
+            singleton.WindowUpdate.Close();
+        }
+
+        private void NewPicture(object a)
+        {
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.Filter = "Pictures(*.JPG;*.GIF)|*.JPG;*.GIF" + "|Все файлы (*.*)|*.* ";
+            myDialog.CheckFileExists = true;
+            myDialog.Multiselect = true;
+            if (myDialog.ShowDialog() == true)
+            {
+                Uri = myDialog.FileName;
+                Notify();
+            }
         }
     }
 }
