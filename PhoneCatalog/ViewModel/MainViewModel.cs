@@ -17,6 +17,7 @@ namespace PhoneCatalog.ViewModel
     class MainViewModel : INotifyPropertyChanged
     {
         ObservableCollection<Phone> phones;
+        public Localisation Localisation { get; set; }
         int selectedStyle;
         Phone selectedPhone;
 
@@ -62,11 +63,13 @@ namespace PhoneCatalog.ViewModel
         public ICommand UpdateCommand { get; set; }
         public ICommand CopyCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand ClosingCommand { get; set; }
         #endregion
 
         public MainViewModel(ISaver saver,ISaverStyle saverStyle,ILoaderStyle loaderStyle )
         {
             phones = Phone.GetPhones();
+            localisation = new Localisation();
             SaveStyle = new RelayCommand(x => saverStyle.Save(SelectedStyle));
             LoadStyle = new RelayCommand(x => SelectedStyle = loaderStyle.Load());
             LoadCommand = new RelayCommand(Load);
@@ -76,6 +79,7 @@ namespace PhoneCatalog.ViewModel
             UpdateCommand = new RelayCommand(Update);
             CopyCommand = new RelayCommand(Copy);
             DeleteCommand = new RelayCommand(Delete);
+            ClosingCommand = new RelayCommand(x => Application.Current.MainWindow.Close());
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void Notify([CallerMemberName] string propName = "")
@@ -164,9 +168,10 @@ namespace PhoneCatalog.ViewModel
                     Processor = SelectedPhone.Processor,
                     RAM = SelectedPhone.RAM,
                     Memory= SelectedPhone.Memory,
+                    Price = SelectedPhone.Price,
                     Uri = SelectedPhone.Uri
                 });
-                Phones = new ObservableCollection<Phone>(Phones);
+               Phones = new ObservableCollection<Phone>(Phones);
             }
         }
 

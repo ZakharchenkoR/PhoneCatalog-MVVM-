@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Win32;
 using PhoneCatalog.Infrastructure;
 
 namespace PhoneCatalog.ViewModel
@@ -95,10 +96,12 @@ namespace PhoneCatalog.ViewModel
         #endregion
 
         public ICommand AddPhone { get; set; }
+        public ICommand NewPictureCommand { get; set; }
 
         public ViewModelWindow2()
         {        
             AddPhone = new RelayCommand(NewPhone);
+            NewPictureCommand = new RelayCommand(NewPicture);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void Notify([CallerMemberName] string propName = "")
@@ -116,6 +119,18 @@ namespace PhoneCatalog.ViewModel
             singleton.Memory = this.Memory;
             singleton.Uri = this.Uri;
             singleton.Window.Close();
+        }
+        private void NewPicture(object a)
+        {
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.Filter = "Pictures(*.JPG;*.GIF)|*.JPG;*.GIF" + "|Все файлы (*.*)|*.* ";
+            myDialog.CheckFileExists = true;
+            myDialog.Multiselect = true;
+            if (myDialog.ShowDialog() == true)
+            {
+                Uri = myDialog.FileName;
+                Notify();
+            }
         }
     }
 }
