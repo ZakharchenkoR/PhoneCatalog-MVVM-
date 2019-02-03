@@ -29,8 +29,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100*"></ColumnDefinition>
                 <ColumnDefinition Width="101*"></ColumnDefinition>
-                <ColumnDefinition Width="487*"/>
-                <ColumnDefinition Width="94*"></ColumnDefinition>
+                <ColumnDefinition Width="338*"/>
+                <ColumnDefinition Width="131*"></ColumnDefinition>
+                <ColumnDefinition Width="112*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <!--Menu-->
             <Menu Grid.Column="0" VerticalAlignment="Center" 
@@ -55,15 +56,15 @@
             </Menu>
             <!--Sort-->
             <Menu Grid.Column="1" VerticalAlignment="Center" 
-                  HorizontalAlignment="Center" Margin="22,4,22,5" Height="18" Width="56">
+                  HorizontalAlignment="Center" Margin="22,4,23,5" Height="18" Width="56">
                 <MenuItem Header="Sorts">
                     <MenuItem Header="Manufacturer"  >
-                       
+
                     </MenuItem>
                     <MenuItem Header="Model" ></MenuItem>
                     <MenuItem Header="OS" ></MenuItem>
                     <MenuItem Header="RAM" >
-                        
+
                     </MenuItem>
                     <MenuItem Header="Memory" ></MenuItem>
                     <MenuItem Header="Price" ></MenuItem>
@@ -79,26 +80,44 @@
                                 IsSelectionRangeEnabled="True"
                                 Name="_slider" Margin="165,6,79,3" Height="18"
                                 />
-            <!--Black or White Style-->
+            <!--English or Russian-->
             <ComboBox  Grid.Column="3"
                     HorizontalContentAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="1,2,1,3" SelectedIndex="{Binding MainViewModel.SelectedStyle}" Height="22">
-                <ComboBoxItem>
+                    VerticalAlignment="Stretch"
+                    Margin="3,3,3,2" SelectedIndex="{Binding MainViewModel.SelectedLanguage}">
+                <ComboBoxItem Content="{Binding MainViewModel.LocalisationProp.Engl}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Selected">
+                            <i:InvokeCommandAction Command="{Binding MainViewModel.LocCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+                <ComboBoxItem Content="{Binding MainViewModel.LocalisationProp.RUS}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Selected">
+                            <i:InvokeCommandAction Command="{Binding MainViewModel.LocCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+            </ComboBox>
+            <!--Black or White Style-->
+            <ComboBox  Grid.Column="4"
+                    HorizontalContentAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Margin="3,3,3,2" SelectedIndex="{Binding MainViewModel.SelectedStyle}">
+                <ComboBoxItem Content="{Binding MainViewModel.LocalisationProp.BlackStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Selected">
                             <i:InvokeCommandAction Command="{Binding MainViewModel.BlackStyleCommand}"></i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    Black Style
                 </ComboBoxItem>
-                <ComboBoxItem>
+                <ComboBoxItem Content="{Binding MainViewModel.LocalisationProp.WhiteStyhle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Selected">
                             <i:InvokeCommandAction Command="{Binding MainViewModel.WhiteStyleCommand}"></i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    White Style
                 </ComboBoxItem>
             </ComboBox>
 

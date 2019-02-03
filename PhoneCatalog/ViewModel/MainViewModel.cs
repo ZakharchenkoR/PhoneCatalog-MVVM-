@@ -17,11 +17,22 @@ namespace PhoneCatalog.ViewModel
     class MainViewModel : INotifyPropertyChanged
     {
         ObservableCollection<Phone> phones;
-        public Localisation Localisation { get; set; }
+        public Localisation localisationProp;
         int selectedStyle;
+        int selectedLanguage;
         Phone selectedPhone;
 
         #region Propertys
+
+        public Localisation LocalisationProp
+        {
+            get => localisationProp;
+            set
+            {
+                localisationProp = value;
+                Notify();
+            }
+        }
         public ObservableCollection<Phone> Phones
         {
             get => phones;
@@ -38,6 +49,16 @@ namespace PhoneCatalog.ViewModel
             set
             {
                 selectedStyle = value;
+                Notify();
+            }
+        }
+
+        public int SelectedLanguage
+        {
+            get => selectedLanguage;
+            set
+            {
+                selectedLanguage = value;
                 Notify();
             }
         }
@@ -64,12 +85,13 @@ namespace PhoneCatalog.ViewModel
         public ICommand CopyCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand ClosingCommand { get; set; }
+        public ICommand LocCommand { get; set; }
         #endregion
 
         public MainViewModel(ISaver saver,ISaverStyle saverStyle,ILoaderStyle loaderStyle )
         {
             phones = Phone.GetPhones();
-            localisation = new Localisation();
+            LocalisationProp = new Localisation();
             SaveStyle = new RelayCommand(x => saverStyle.Save(SelectedStyle));
             LoadStyle = new RelayCommand(x => SelectedStyle = loaderStyle.Load());
             LoadCommand = new RelayCommand(Load);
@@ -80,6 +102,7 @@ namespace PhoneCatalog.ViewModel
             CopyCommand = new RelayCommand(Copy);
             DeleteCommand = new RelayCommand(Delete);
             ClosingCommand = new RelayCommand(x => Application.Current.MainWindow.Close());
+            LocCommand = new RelayCommand(Langusge);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void Notify([CallerMemberName] string propName = "")
@@ -179,6 +202,28 @@ namespace PhoneCatalog.ViewModel
         {
             Phones.Remove(SelectedPhone);
             Phones = new ObservableCollection<Phone>(Phones);
+        }
+
+        private void Langusge(object a)
+        {
+            
+            switch (SelectedLanguage)
+            {
+                case 0:
+                    Localisation localisation = new Localisation();
+                    localisation.English = true;
+                    LocalisationProp = localisation;
+                    Notify();
+                    MessageBox.Show("UK");
+                    break;
+                case 1:
+                    Localisation localisation1 = new Localisation();
+                    localisation1.English = false;
+                    LocalisationProp = localisation1;
+                    Notify();
+                    MessageBox.Show("RUS");
+                    break;
+            }
         }
         #endregion
 
