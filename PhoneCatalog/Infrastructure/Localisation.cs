@@ -13,7 +13,16 @@ namespace PhoneCatalog.Infrastructure
         private bool english = true;
 
         #region Propertys
-      
+        string catalogP;
+        public string CatalogP
+        {
+            get => catalogP;
+            set
+            {
+                catalogP = value;
+                Notify();
+            }
+        }
 
         string blackStyle;
         public string BlackStyle
@@ -261,6 +270,7 @@ namespace PhoneCatalog.Infrastructure
                 Save = "Save";
                 Processor = "Processor";
                 Pictures = "Pictures";
+                CatalogP = "Phones Catalog";
             }
             else
             {
@@ -283,6 +293,7 @@ namespace PhoneCatalog.Infrastructure
                 Save = "Сохранить";
                 Processor = "Процесор";
                 Pictures = "Картинка";
+                CatalogP = "Каталог Телефонов";
             }
         }
 

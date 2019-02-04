@@ -6,7 +6,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:PhoneCatalog.Infrastructure"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding MainViewModel.LocalisationProp.CatalogP}" Height="450" Width="800" Icon="/PhoneCatalog;component/Pictures/iconfinder_Call_calling_phone_communication_4014660.png">
     <Window.DataContext>
         <local:ViewModuleLocator></local:ViewModuleLocator>
     </Window.DataContext>
@@ -176,7 +176,31 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <!--ListBox-->
-                <DataGrid AutoGenerateColumns="False"
+                <ListBox ItemsSource="{Binding MainViewModel.Phones}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         SelectedItem="{Binding MainViewModel.SelectedPhone}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Width="{Binding ElementName=_slider,Path= Value}" Height="{Binding ElementName= _slider,Path= Value}"
+                                       Source="{Binding Uri}"></Image>
+                                <TextBlock Text="{Binding Manufacturer}" FontSize="20"></TextBlock>
+                                <TextBlock Text="{Binding Model}" FontSize="15"></TextBlock>
+                                <TextBlock Text="{Binding OperatingSystem}" FontSize="12"></TextBlock>
+                                <TextBlock Text="{Binding Processor}" FontSize="12"></TextBlock>
+                                <TextBlock Text="{Binding RAM}" FontSize="12"></TextBlock>
+                                <TextBlock Text="{Binding Memory}" FontSize="12"></TextBlock>
+                                <TextBlock Text="{Binding Price}" FontSize="12"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+                <!--<DataGrid AutoGenerateColumns="False"
                       ItemsSource="{Binding MainViewModel.Phones}"                   
                       SelectedItem="{Binding MainViewModel.SelectedPhone}" 
                       RenderTransformOrigin="0.5,0.539">
@@ -212,7 +236,7 @@
                         </DataGridTemplateColumn>
 
                     </DataGrid.Columns>
-                </DataGrid>
+                </DataGrid>-->
 
                 <!--Bottom Menu-->
                 <Border Margin="1" Grid.Row="1" BorderBrush="Gray" BorderThickness="1">

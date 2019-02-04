@@ -16,6 +16,23 @@
         <Setter Property="Foreground" Value="Black"></Setter>
     </Style>
 
+    <Style TargetType="ListBox">
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="#C2C0F3" Offset="0.5"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <!--<Style TargetType="TextBlock" >
+        <Setter Property="Background" Value="White"></Setter>
+    </Style>-->
+
     <Style TargetType="Button">
         <Setter Property="Button.Background">
             <Setter.Value>

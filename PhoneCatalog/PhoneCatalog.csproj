@@ -142,7 +142,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Pictures\iconfinder_Call_calling_phone_communication_4014660.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Pictures\a2.jpeg" />
     <Resource Include="Pictures\mi8.jpg" />

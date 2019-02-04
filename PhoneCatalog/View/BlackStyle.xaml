@@ -6,14 +6,20 @@
         <Setter Property="Background" Value="#1C1C1C"></Setter>
         <Setter Property="FontSize" Value="25"></Setter>
     </Style>
+    
     <Style TargetType="Grid">
-        <Setter Property="ListBoxItem.Background">
+        <Setter Property="ListBoxItem.Background" Value="Gray">
+           
+        </Setter>
+    </Style>
+
+    <Style TargetType="ListBox">
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#090903" Offset="0"></GradientStop>
-                    <GradientStop Color="#5a5a5a" Offset="0.3"></GradientStop>
-                    <GradientStop Color="#A8A8A8" Offset="0.6"></GradientStop>
-                    <GradientStop Color="#424242" Offset="1"></GradientStop>
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="#020413" Offset="0.5"></GradientStop>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -52,11 +58,5 @@
         </Setter>
         <Setter Property="ListBoxItem.Foreground" Value="#e3e3e3"></Setter>
         <Setter Property="ListBoxItem.BorderBrush" Value="#a1a1a1"></Setter>
-    </Style>
-
-    <Style TargetType="Menu">
-        <Setter Property="Background"  Value="White"></Setter>
-        <Setter Property="FontSize" Value="15"></Setter>
-        <Setter Property="Foreground" Value="LightGray"></Setter>
     </Style>
 </ResourceDictionary>
