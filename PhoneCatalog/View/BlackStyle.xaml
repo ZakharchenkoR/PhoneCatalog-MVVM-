@@ -2,29 +2,33 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:PhoneCatalog">
 
-    <Style TargetType="Window">
+    <!--<Style TargetType="Window">
         <Setter Property="Background" Value="#1C1C1C"></Setter>
         <Setter Property="FontSize" Value="25"></Setter>
-    </Style>
+    </Style>-->
     
     <Style TargetType="Grid">
-        <Setter Property="ListBoxItem.Background" Value="Gray">
+        <Setter Property="ListBoxItem.Background" Value="#373636">
            
         </Setter>
     </Style>
 
     <Style TargetType="ListBox">
-        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="Foreground" Value="#1c1812"></Setter>
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                     <GradientStop Color="White" Offset="0"></GradientStop>
-                    <GradientStop Color="#020413" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#474545" Offset="0.5"></GradientStop>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <Style TargetType="Menu">
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    
     <Style TargetType="Button">
         <Setter Property="Button.Background">
             <Setter.Value>
@@ -34,7 +38,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Button.Foreground" Value="Black"></Setter>
+        <Setter Property="Button.Foreground" Value="White"></Setter>
         <Setter Property="Button.BorderBrush" >
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -52,11 +56,24 @@
                     <GradientStop Color="#424242" Offset="0"></GradientStop>
                     <GradientStop Color="#5a5a5a" Offset="0.3"></GradientStop>
                     <GradientStop Color="#5a5a55" Offset="0.6"></GradientStop>
-                    <GradientStop Color="#424242" Offset="1"></GradientStop>
+                    <GradientStop Color="#5F5858" Offset="1"></GradientStop>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
         <Setter Property="ListBoxItem.Foreground" Value="#e3e3e3"></Setter>
         <Setter Property="ListBoxItem.BorderBrush" Value="#a1a1a1"></Setter>
+    </Style>
+
+    <Style TargetType="MenuItem">
+        <Setter Property="MenuItem.Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="#a79ec2" Offset="0.5"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MenuItem.Foreground" Value="White"></Setter>
+        <Setter Property="MenuItem.BorderBrush" Value="DarkGray"></Setter>
     </Style>
 </ResourceDictionary>

@@ -24,6 +24,18 @@ namespace PhoneCatalog.Infrastructure
             }
         }
 
+        string ollRAM;
+        public string OLLRAM
+        {
+            get => ollRAM;
+            set
+            {
+                ollRAM = value;
+                Notify();
+            }
+        }
+
+
         string blackStyle;
         public string BlackStyle
         {
@@ -246,6 +258,28 @@ namespace PhoneCatalog.Infrastructure
             }
         }
 
+        string cancel;
+        public string Cancel
+        {
+            get => cancel;
+            set
+            {
+                cancel = value;
+                Notify();
+            }
+        }
+
+        string filter;
+        public string Filter
+        {
+            get => filter;
+            set
+            {
+                filter = value;
+                Notify();
+            }
+        }
+
         #endregion
         public void LocalosationAdd()
         {
@@ -271,6 +305,9 @@ namespace PhoneCatalog.Infrastructure
                 Processor = "Processor";
                 Pictures = "Pictures";
                 CatalogP = "Phones Catalog";
+                ollRAM = "Oll phones";
+                Cancel = "Cancel";
+                Filter = "Choose";
             }
             else
             {
@@ -294,6 +331,9 @@ namespace PhoneCatalog.Infrastructure
                 Processor = "Процесор";
                 Pictures = "Картинка";
                 CatalogP = "Каталог Телефонов";
+                ollRAM = "Все телефоны";
+                Cancel = "Отменить";
+                Filter = "Выбрать";
             }
         }
 

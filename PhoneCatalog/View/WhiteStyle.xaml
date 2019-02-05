@@ -6,7 +6,7 @@
         <Setter Property="FontSize" Value="25"></Setter>
     </Style>
     <Style TargetType="Grid">
-        <Setter Property="Background" Value="#C2C0F3"></Setter>
+        <Setter Property="Background" Value="#978994"></Setter>
     </Style>
     <Style TargetType="Menu">
         <Setter Property="Foreground" Value="Black"></Setter>
@@ -29,10 +29,6 @@
 
     </Style>
 
-    <!--<Style TargetType="TextBlock" >
-        <Setter Property="Background" Value="White"></Setter>
-    </Style>-->
-
     <Style TargetType="Button">
         <Setter Property="Button.Background">
             <Setter.Value>
@@ -52,5 +48,32 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="ListBoxItem">
+        <Setter Property="ListBoxItem.Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="#a79ec2" Offset="0.5"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ListBoxItem.Foreground" Value="Black"></Setter>
+        <Setter Property="ListBoxItem.BorderBrush" Value="Black"></Setter>
+    </Style>
+
+    <Style TargetType="MenuItem">
+        <Setter Property="MenuItem.Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0"></GradientStop>
+                    <GradientStop Color="#a79ec2" Offset="0.5"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MenuItem.Foreground" Value="Black"></Setter>
+        <Setter Property="MenuItem.BorderBrush" Value="Black"></Setter>
+    </Style>
+
 
 </ResourceDictionary>

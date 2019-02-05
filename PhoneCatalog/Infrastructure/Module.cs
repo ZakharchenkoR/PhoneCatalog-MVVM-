@@ -13,6 +13,7 @@ namespace PhoneCatalog.Infrastructure
         public override void Load()
         {
             Bind<ISaver>().To<JSONSaver>();
+            Bind<ILoader>().To<JSONLoader>();
             Bind<ISaverStyle>().To<JSONSaveStyle>();
             Bind<ILoaderStyle>().To<JSONLoadStyle>();
         }

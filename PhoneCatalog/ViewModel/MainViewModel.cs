@@ -16,10 +16,18 @@ namespace PhoneCatalog.ViewModel
 {
     class MainViewModel : INotifyPropertyChanged
     {
+        ILoader loader;
+        ISaver saver;
+        Filters filters;
         ObservableCollection<Phone> phones;
-        public Localisation localisationProp;
+        Localisation localisationProp;
         int selectedStyle;
         int selectedLanguage;
+        int selectedRAM = 0;
+        int selectedMemory = 0;
+        int selectedPrice = 0;
+        int selectedManufacturer = 0;
+        int selectedOS = 0;
         Phone selectedPhone;
 
         #region Propertys
@@ -33,6 +41,7 @@ namespace PhoneCatalog.ViewModel
                 Notify();
             }
         }
+
         public ObservableCollection<Phone> Phones
         {
             get => phones;
@@ -40,6 +49,72 @@ namespace PhoneCatalog.ViewModel
             {
                 phones = value;
                 Notify();
+            }
+        }
+
+        public int SelectedOS
+        {
+            get => selectedOS;
+            set
+            {
+                selectedOS = value;
+                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice, selectedManufacturer, selectedOS);
+                Phones = new ObservableCollection<Phone>(Phones);
+                Notify();
+            }
+        }
+
+        public int SelectedManufacturer
+        {
+            get => selectedManufacturer;
+            set
+            {
+                selectedManufacturer = value;
+                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice, selectedManufacturer,selectedOS);
+                Phones = new ObservableCollection<Phone>(Phones);
+                Notify();
+            }
+        }
+
+        public int SelectedPrice
+        {
+            get => selectedPrice;
+            set
+            {
+                selectedPrice = value;
+                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice,selectedManufacturer,selectedOS);
+                Phones = new ObservableCollection<Phone>(Phones);
+                Notify();
+            }
+        }
+
+        public int SelectedMemory
+        {
+            get => selectedMemory;
+            set
+            {
+               
+                selectedMemory = value;
+                Phones = filters.Fitr(selectedRAM,selectedMemory,selectedPrice,selectedManufacturer,selectedOS);
+                Phones = new ObservableCollection<Phone>(Phones);
+                Notify();
+            }
+        }
+
+        public int SelectedRAM
+        {
+            get => selectedRAM;
+            set
+            {
+               
+                
+                selectedRAM = value;
+                Phones = filters.Fitr(selectedRAM, selectedMemory,selectedPrice,selectedManufacturer,selectedOS);
+                Phones = new ObservableCollection<Phone>(Phones);
+                Notify();
+
+
+                
             }
         }
 
@@ -59,6 +134,7 @@ namespace PhoneCatalog.ViewModel
             set
             {
                 selectedLanguage = value;
+               
                 Notify();
             }
         }
@@ -92,12 +168,20 @@ namespace PhoneCatalog.ViewModel
         public ICommand SortMemory { get; set; }
         public ICommand SortOS { get; set; }
         public ICommand SortModel { get; set; }
+        public ICommand SaveData { get; set; }
+        public ICommand LoadData { get; set; }
+        public ICommand ReturnFiltersCommand { get; set; }
         #endregion
 
-        public MainViewModel(ISaver saver,ISaverStyle saverStyle,ILoaderStyle loaderStyle )
+        public MainViewModel(ISaver saver,ILoader loader,ISaverStyle saverStyle,ILoaderStyle loaderStyle )
         {
+            this.loader = loader;
+            this.saver = saver;
+            filters = new Filters(loader);
             phones = Phone.GetPhones();
             LocalisationProp = new Localisation();
+            LoadData = new RelayCommand(DataLoad);
+            SaveData = new RelayCommand(x => saver.Save(Phones));
             SaveStyle = new RelayCommand(x => saverStyle.Save(SelectedStyle));
             LoadStyle = new RelayCommand(x => SelectedStyle = loaderStyle.Load());
             LoadCommand = new RelayCommand(Load);
@@ -115,6 +199,7 @@ namespace PhoneCatalog.ViewModel
             SortPrice = new RelayCommand(PriceSort);
             SortRAM = new RelayCommand(RAMSort);
             SortOS = new RelayCommand(OSSort);
+            ReturnFiltersCommand = new RelayCommand(ReturnFilters);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -124,6 +209,18 @@ namespace PhoneCatalog.ViewModel
         }
 
         #region Metods
+        private void ReturnFilters (object a)
+        {
+            selectedPrice = 0;
+            Phones = loader.Load();
+            Phones = new ObservableCollection<Phone>(Phones);
+        }
+
+        private void DataLoad(object a)
+        {
+            Phones = loader.Load();
+            Phones = new ObservableCollection<Phone>(Phones);
+        }
 
         private void ModelSort(object a)
         {
@@ -205,6 +302,7 @@ namespace PhoneCatalog.ViewModel
                 Price = singleton.Price
             });
             Phones = new ObservableCollection<Phone>(Phones);
+            saver.Save(Phones);
         }
 
         private void Update(object a)
@@ -232,6 +330,7 @@ namespace PhoneCatalog.ViewModel
                 SelectedPhone.Price = singleton.Price;
                 SelectedPhone.Uri = singleton.Uri;
                 SelectedPhone.RAM = singleton.RAM;
+                saver.Save(Phones);
                 SelectedPhone = null;
             }
             else
@@ -263,6 +362,7 @@ namespace PhoneCatalog.ViewModel
                     Uri = SelectedPhone.Uri
                 });
                Phones = new ObservableCollection<Phone>(Phones);
+                saver.Save(Phones);
                 SelectedPhone = null;
             }
             else
@@ -282,6 +382,7 @@ namespace PhoneCatalog.ViewModel
         {
             Phones.Remove(SelectedPhone);
             Phones = new ObservableCollection<Phone>(Phones);
+            saver.Save(Phones);
         }
 
         private void Langusge(object a)
