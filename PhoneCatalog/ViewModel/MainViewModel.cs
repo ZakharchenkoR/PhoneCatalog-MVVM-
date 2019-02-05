@@ -30,7 +30,7 @@ namespace PhoneCatalog.ViewModel
         int selectedOS = 0;
         Phone selectedPhone;
 
-        #region Propertys
+        #region Properties
 
         public Localisation LocalisationProp
         {
@@ -384,6 +384,7 @@ namespace PhoneCatalog.ViewModel
             Phones = new ObservableCollection<Phone>(Phones);
             saver.Save(Phones);
         }
+
 
         private void Langusge(object a)
         {

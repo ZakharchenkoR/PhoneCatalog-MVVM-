@@ -159,5 +159,44 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\andro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\samsung.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\mi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\hu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\other.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\coin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\and.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\iso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\huawei.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\memory.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

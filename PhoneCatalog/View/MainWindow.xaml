@@ -154,23 +154,55 @@
                 <Label Grid.Row="0" FontSize="15" FontWeight="Bold" Content="{Binding MainViewModel.LocalisationProp.Filter}"></Label>
                 <Label Grid.Row="1" Content="{Binding MainViewModel.LocalisationProp.Manufacturer}"></Label>
                 <ComboBox Grid.Row="2" Margin="5" SelectedIndex="{Binding MainViewModel.SelectedManufacturer}">
-                    <ComboBoxItem>x</ComboBoxItem>
-                    <ComboBoxItem>Apple</ComboBoxItem>
-                    <ComboBoxItem>Samsung</ComboBoxItem>
-                    <ComboBoxItem>Xiaomi</ComboBoxItem>
-                    <ComboBoxItem>Huawei</ComboBoxItem>
-                    <ComboBoxItem>-</ComboBoxItem>
+                    <ComboBoxItem HorizontalContentAlignment="Center" VerticalContentAlignment="Center">...</ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Pictures/apple.png" Width="17" Height="17"></Image>
+                            <TextBlock Margin="10,0,0,0">Apple</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Pictures/samsung.jpg" Width="17" Height="17"></Image>
+                            <TextBlock Margin="10,0,0,0">Samsung</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Pictures/mi.png" Width="17" Height="17"></Image>
+                            <TextBlock Margin="10,0,0,0">Xiaomi</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Pictures/huawei.png" Width="17" Height="17"></Image>
+                            <TextBlock Margin="10,0,0,0">Huawei</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                       -
+                    </ComboBoxItem>
                 </ComboBox>
                 <Label Grid.Row="3" Content="{Binding MainViewModel.LocalisationProp.OS}"></Label>
                 <ComboBox Grid.Row="4" Margin="5" SelectedIndex="{Binding MainViewModel.SelectedOS}">
-                    <ComboBoxItem>x</ComboBoxItem>
-                    <ComboBoxItem>IOS</ComboBoxItem>
-                    <ComboBoxItem>Android</ComboBoxItem>
+                    <ComboBoxItem HorizontalContentAlignment="Center" VerticalContentAlignment="Center">...</ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Pictures/iso.png" Width="17" Height="17"></Image>
+                            <TextBlock Margin="10,0,0,0">IOS</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Pictures/and.png" Width="17" Height="17"></Image>
+                            <TextBlock Margin="10,0,0,0">Android</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
                     <ComboBoxItem>-</ComboBoxItem>
                 </ComboBox>
                 <Label Grid.Row="5" Content="{Binding MainViewModel.LocalisationProp.RAM}"></Label>
                 <ComboBox Grid.Row="6" Margin="5" SelectedIndex="{Binding MainViewModel.SelectedRAM}">
-                    <ComboBoxItem >x</ComboBoxItem>
+                    <ComboBoxItem HorizontalContentAlignment="Center" VerticalContentAlignment="Center">...</ComboBoxItem>
                     <ComboBoxItem>1</ComboBoxItem>
                     <ComboBoxItem>2</ComboBoxItem>
                     <ComboBoxItem>3</ComboBoxItem>
@@ -180,7 +212,7 @@
                 </ComboBox>
                 <Label Grid.Row="7" Content="{Binding MainViewModel.LocalisationProp.Memory}"></Label>
                 <ComboBox Grid.Row="8" Margin="5" SelectedIndex="{Binding MainViewModel.SelectedMemory}">
-                    <ComboBoxItem >x</ComboBoxItem>
+                    <ComboBoxItem HorizontalContentAlignment="Center" VerticalContentAlignment="Center">...</ComboBoxItem>
                     <ComboBoxItem>8</ComboBoxItem>
                     <ComboBoxItem>16</ComboBoxItem>
                     <ComboBoxItem>32</ComboBoxItem>
@@ -190,7 +222,7 @@
                 </ComboBox>
                 <Label Grid.Row="9" Content="{Binding MainViewModel.LocalisationProp.Price}"></Label>
                 <ComboBox Grid.Row="10" Margin="5" SelectedIndex="{Binding MainViewModel.SelectedPrice}">
-                    <ComboBoxItem >x</ComboBoxItem>
+                    <ComboBoxItem HorizontalContentAlignment="Center" VerticalContentAlignment="Center">...</ComboBoxItem>
                     <ComboBoxItem >0 - 5000</ComboBoxItem>
                     <ComboBoxItem>0 - 10000</ComboBoxItem>
                     <ComboBoxItem>0 - 15000</ComboBoxItem>
@@ -212,7 +244,7 @@
                          SelectedItem="{Binding MainViewModel.SelectedPhone}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
+                            <StackPanel Margin="5">
                                 <Image Width="{Binding ElementName=_slider,Path= Value}" Height="{Binding ElementName= _slider,Path= Value}"
                                        Source="{Binding Uri}">
                                 </Image>
@@ -220,14 +252,18 @@
                                 <TextBlock Text="{Binding Model}" FontSize="15"></TextBlock>
                                 <TextBlock Text="{Binding OperatingSystem}" FontSize="12"></TextBlock>
                                 <TextBlock Text="{Binding Processor}" FontSize="12"></TextBlock>
-                                <TextBlock Text="{Binding RAM}" FontSize="12"></TextBlock>
-                                <TextBlock Text="{Binding Memory}" FontSize="12"></TextBlock>
-                                <TextBlock Text="{Binding Price}" FontSize="12"></TextBlock>
-                                <!--<Button Margin="10,30"
-                                   Command="{Binding DataContext.Select, RelativeSource={RelativeSource Mode=FindAncestor,
-                                    AncestorType={x:Type DataGrid}}, Path= DeleteCommand}">
-                                    X
-                                </Button>-->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding RAM}" FontSize="12"></TextBlock>
+                                    <Image Source="../Pictures/ram.png" Height="15" Width="15" Margin="5,0,0,0"></Image>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Memory}" FontSize="12"></TextBlock>
+                                    <Image Source="../Pictures/memory.png" Height="15" Width="15" Margin="5,0,0,0"></Image>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Price}" FontSize="12"></TextBlock>
+                                    <Image Source="../Pictures/coin.png" Height="15" Width="15" Margin="5,0,0,0"></Image>
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -236,6 +272,13 @@
                             <WrapPanel></WrapPanel>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Command="{Binding MainViewModel.CopyCommand}" Header="{Binding MainViewModel.LocalisationProp.Copy}"></MenuItem>
+                            <MenuItem Command="{Binding MainViewModel.UpdateCommand}" Header="{Binding MainViewModel.LocalisationProp.Update}"></MenuItem>
+                            <MenuItem Command="{Binding MainViewModel.DeleteCommand}" Header="{Binding MainViewModel.LocalisationProp.Delete}"></MenuItem>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
                 </ListBox>
                 <!--<DataGrid AutoGenerateColumns="False"
                       ItemsSource="{Binding MainViewModel.Phones}"                   

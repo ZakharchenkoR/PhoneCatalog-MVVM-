@@ -280,14 +280,24 @@ namespace PhoneCatalog.Infrastructure
             }
         }
 
+        string delete;
+        public string Delete
+        {
+            get => delete;
+            set
+            {
+                delete = value;
+                Notify();
+            }
+        }
         #endregion
         public void LocalosationAdd()
         {
             if(English == true)
             {
-                BlackStyle = "BlackStyle";
-                WhiteStyle = "WhiteStyle";
-                Engl = "UK";
+                BlackStyle = "Black Style";
+                WhiteStyle = "White Style";
+                Engl = "ENG";
                 RUS = "RUS";
                 Manufacturer = "Manufacturer";
                 NewPhone = "Add New Phone";
@@ -308,6 +318,7 @@ namespace PhoneCatalog.Infrastructure
                 ollRAM = "Oll phones";
                 Cancel = "Cancel";
                 Filter = "Choose";
+                Delete = "Delete";
             }
             else
             {
@@ -334,6 +345,8 @@ namespace PhoneCatalog.Infrastructure
                 ollRAM = "Все телефоны";
                 Cancel = "Отменить";
                 Filter = "Выбрать";
+                Delete = "Удалить";
+
             }
         }
 
