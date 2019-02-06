@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhoneCatalog.ViewModel"
         mc:Ignorable="d"
-        Title="WindowUpdate" Height="450" Width="800">
+        Title="" Height="450" Width="800" Icon="/PhoneCatalog;component/Pictures/iconfinder_Call_calling_phone_communication_4014660.png">
     <Grid Margin="50">
         <Grid.DataContext>
             <local:UpdateViewModel></local:UpdateViewModel>
@@ -37,9 +37,27 @@
         <TextBox Grid.Column="2" Grid.Row="1" Margin="5" Text="{Binding Model}" ></TextBox>
         <TextBox Grid.Column="2" Grid.Row="2" Margin="5" Text="{Binding OperatingSystem}"></TextBox>
         <TextBox Grid.Column="2" Grid.Row="3" Margin="5" Text="{Binding Processor}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="4" Margin="5" Text="{Binding RAM}"></TextBox>
+        <!--<TextBox Grid.Column="2" Grid.Row="4" Margin="5" Text="{Binding RAM}"></TextBox>-->
+        <ComboBox Grid.Column="2" Grid.Row="4" Margin="7" SelectedIndex="{Binding RAM}">
+            <ComboBoxItem>1</ComboBoxItem>
+            <ComboBoxItem>2</ComboBoxItem>
+            <ComboBoxItem>3</ComboBoxItem>
+            <ComboBoxItem>4</ComboBoxItem>
+            <ComboBoxItem>6</ComboBoxItem>
+            <ComboBoxItem>8</ComboBoxItem>
+            <ComboBoxItem>10</ComboBoxItem>
+        </ComboBox>
         <TextBox Grid.Column="2" Grid.Row="6" Margin="5" Text="{Binding Price}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="5" Margin="5" Text="{Binding Memory}"></TextBox>
+        <!--<TextBox Grid.Column="2" Grid.Row="5" Margin="5" Text="{Binding Memory}"></TextBox>-->
+        <ComboBox Grid.Column="2" Grid.Row="5" Margin="7" SelectedIndex="{Binding Memory}">
+            <ComboBoxItem>8</ComboBoxItem>
+            <ComboBoxItem>16</ComboBoxItem>
+            <ComboBoxItem>32</ComboBoxItem>
+            <ComboBoxItem>64</ComboBoxItem>
+            <ComboBoxItem>128</ComboBoxItem>
+            <ComboBoxItem>256</ComboBoxItem>
+            <ComboBoxItem>512</ComboBoxItem>
+        </ComboBox>
         <Grid Grid.Column="2" Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="142*"></ColumnDefinition>

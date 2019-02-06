@@ -42,6 +42,12 @@ namespace PhoneCatalog.ViewModel
             get => price;
             set
             {
+                if(value < 0)
+                {
+                    price = 0;
+                    Notify();
+                    return;
+                }
                 price = value;
                 Notify();
             }
@@ -91,7 +97,30 @@ namespace PhoneCatalog.ViewModel
             get => ram;
             set
             {
-                ram = value;
+                switch(value)
+                {
+                    case 0:
+                        ram = 1;
+                        break;
+                    case 1:
+                        ram = 2;
+                        break;
+                    case 2:
+                        ram = 3;
+                        break;
+                    case 3:
+                        ram = 4;
+                        break;
+                    case 4:
+                        ram = 6;
+                        break;
+                    case 5:
+                        ram = 8;
+                        break;
+                    case 6:
+                        ram = 10;
+                        break;
+                }
                 Notify();
             }
         }
@@ -101,7 +130,30 @@ namespace PhoneCatalog.ViewModel
             get => memory;
             set
             {
-                memory = value;
+                switch (value)
+                {
+                    case 0:
+                        memory = 8;
+                        break;
+                    case 1:
+                        memory = 16;
+                        break;
+                    case 2:
+                        memory = 32;
+                        break;
+                    case 3:
+                        memory = 64;
+                        break;
+                    case 4:
+                        memory = 128;
+                        break;
+                    case 5:
+                        memory = 256;
+                        break;
+                    case 6:
+                        memory = 512;
+                        break;
+                }
                 Notify();
             }
         }

@@ -26,7 +26,7 @@ namespace PhoneCatalog.ViewModel
         string uri;
 
 
-        #region Propertys
+        #region Properties
 
         public Localisation Localisation
         {
@@ -43,6 +43,12 @@ namespace PhoneCatalog.ViewModel
             get => price;
             set
             {
+                if(value < 0)
+                {
+                    price = 0;
+                    Notify();
+                    return;
+                }
                 price = value;
                 Notify();
             }
@@ -88,7 +94,9 @@ namespace PhoneCatalog.ViewModel
 
         public int RAM
         {
+
             get => ram;
+           
             set
             {
                 ram = value;
@@ -127,9 +135,9 @@ namespace PhoneCatalog.ViewModel
             Manufacturer = singleton.Manufacturer;
             Model = singleton.Model;
             OperatingSystem = singleton.OperatingSystem;
-            Processor = singleton.Processor;
-            RAM = singleton.RAM;
-            Memory = singleton.Memory;
+            Processor = singleton.Processor;         
+            ram = singleton.RAM;
+            memory = singleton.Memory;
             Price = singleton.Price;
             Uri = singleton.Uri;
             UpdateCommand = new RelayCommand(Update);
@@ -145,15 +153,17 @@ namespace PhoneCatalog.ViewModel
 
         private void Update(object a)
         {
-            singleton.Manufacturer = this.Manufacturer;
-            singleton.Model = this.Model;
-            singleton.Processor = this.Processor;
-            singleton.OperatingSystem = this.OperatingSystem;
-            singleton.Price = this.Price;
-            singleton.Uri = this.Uri;
-            singleton.Memory = this.Memory;
-            singleton.RAM = this.RAM;
-            singleton.WindowUpdate.Close();
+           
+                singleton.Manufacturer = this.Manufacturer;
+                singleton.Model = this.Model;
+                singleton.Processor = this.Processor;
+                singleton.OperatingSystem = this.OperatingSystem;
+                singleton.Price = this.Price;
+                singleton.Uri = this.Uri;
+                singleton.Memory = this.Memory;
+                singleton.RAM = this.RAM;
+                singleton.WindowUpdate.Close();
+
         }
 
         private void NewPicture(object a)

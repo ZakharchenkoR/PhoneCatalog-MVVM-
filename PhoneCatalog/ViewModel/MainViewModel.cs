@@ -52,6 +52,7 @@ namespace PhoneCatalog.ViewModel
             }
         }
 
+      
         public int SelectedOS
         {
             get => selectedOS;
@@ -70,7 +71,7 @@ namespace PhoneCatalog.ViewModel
             set
             {
                 selectedManufacturer = value;
-                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice, selectedManufacturer,selectedOS);
+                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice, selectedManufacturer, selectedOS);
                 Phones = new ObservableCollection<Phone>(Phones);
                 Notify();
             }
@@ -82,8 +83,11 @@ namespace PhoneCatalog.ViewModel
             set
             {
                 selectedPrice = value;
-                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice,selectedManufacturer,selectedOS);
+                //MessageBox.Show(selectedPrice.ToString());
+                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice, selectedManufacturer, selectedOS);
+                //MessageBox.Show(selectedPrice.ToString());
                 Phones = new ObservableCollection<Phone>(Phones);
+                //MessageBox.Show(selectedPrice.ToString());
                 Notify();
             }
         }
@@ -93,9 +97,9 @@ namespace PhoneCatalog.ViewModel
             get => selectedMemory;
             set
             {
-               
+
                 selectedMemory = value;
-                Phones = filters.Fitr(selectedRAM,selectedMemory,selectedPrice,selectedManufacturer,selectedOS);
+                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice, selectedManufacturer, selectedOS);
                 Phones = new ObservableCollection<Phone>(Phones);
                 Notify();
             }
@@ -106,19 +110,14 @@ namespace PhoneCatalog.ViewModel
             get => selectedRAM;
             set
             {
-               
-                
                 selectedRAM = value;
-                Phones = filters.Fitr(selectedRAM, selectedMemory,selectedPrice,selectedManufacturer,selectedOS);
+                Phones = filters.Fitr(selectedRAM, selectedMemory, selectedPrice, selectedManufacturer, selectedOS);
                 Phones = new ObservableCollection<Phone>(Phones);
                 Notify();
-
-
-                
             }
         }
 
-        public int SelectedStyle 
+        public int SelectedStyle
         {
             get => selectedStyle;
             set
@@ -134,7 +133,7 @@ namespace PhoneCatalog.ViewModel
             set
             {
                 selectedLanguage = value;
-               
+
                 Notify();
             }
         }
@@ -173,7 +172,7 @@ namespace PhoneCatalog.ViewModel
         public ICommand ReturnFiltersCommand { get; set; }
         #endregion
 
-        public MainViewModel(ISaver saver,ILoader loader,ISaverStyle saverStyle,ILoaderStyle loaderStyle )
+        public MainViewModel(ISaver saver, ILoader loader, ISaverStyle saverStyle, ILoaderStyle loaderStyle)
         {
             this.loader = loader;
             this.saver = saver;
@@ -211,7 +210,11 @@ namespace PhoneCatalog.ViewModel
         #region Metods
         private void ReturnFilters (object a)
         {
-            selectedPrice = 0;
+            SelectedPrice = 0;
+            SelectedRAM = 0;
+            SelectedManufacturer = 0;
+            SelectedMemory = 0;
+            SelectedOS = 0;
             Phones = loader.Load();
             Phones = new ObservableCollection<Phone>(Phones);
         }
@@ -284,105 +287,258 @@ namespace PhoneCatalog.ViewModel
         }
 
         private void AddNewPhone(object a)
-        {        
-            Singleton singleton = Singleton.GetInstance();
-            singleton.Loc = localisationProp;
-            Window1 _window = new Window1();        
-            singleton.Window = _window;
-            _window.ShowDialog();
-            Phones.Add(new Phone
-            {
-                Manufacturer = singleton.Manufacturer,
-                Model = singleton.Model,
-                OperatingSystem = singleton.OperatingSystem,
-                Processor = singleton.Processor,
-                RAM = singleton.RAM,
-                Memory = singleton.Memory,
-                Uri = singleton.Uri,
-                Price = singleton.Price
-            });
-            Phones = new ObservableCollection<Phone>(Phones);
-            saver.Save(Phones);
-        }
-
-        private void Update(object a)
         {
-            if(SelectedPhone != null)
+            if (selectedManufacturer == 0 && selectedMemory == 0 && selectedPrice == 0 && selectedOS == 0 && selectedRAM == 0)
             {
                 Singleton singleton = Singleton.GetInstance();
-                singleton.Loc = LocalisationProp;
-                singleton.Manufacturer = SelectedPhone.Manufacturer;
-                singleton.Model = SelectedPhone.Model;
-                singleton.OperatingSystem = SelectedPhone.OperatingSystem;
-                singleton.Processor = SelectedPhone.Processor;
-                singleton.RAM = SelectedPhone.RAM;
-                singleton.Memory = SelectedPhone.Memory;
-                singleton.Uri = SelectedPhone.Uri;
-                singleton.Price = SelectedPhone.Price;
-                WindowUpdate update = new WindowUpdate();
-                singleton.WindowUpdate = update;
-                update.ShowDialog();
-                SelectedPhone.Manufacturer = singleton.Manufacturer;
-                SelectedPhone.Model = singleton.Model;
-                SelectedPhone.Memory = singleton.Memory;
-                SelectedPhone.Processor = singleton.Processor;
-                SelectedPhone.OperatingSystem = singleton.OperatingSystem;
-                SelectedPhone.Price = singleton.Price;
-                SelectedPhone.Uri = singleton.Uri;
-                SelectedPhone.RAM = singleton.RAM;
+                singleton.Loc = localisationProp;
+                Window1 _window = new Window1();
+                singleton.Window = _window;
+                _window.ShowDialog();
+                Phones.Add(new Phone
+                {
+                    Manufacturer = singleton.Manufacturer,
+                    Model = singleton.Model,
+                    OperatingSystem = singleton.OperatingSystem,
+                    Processor = singleton.Processor,
+                    RAM = singleton.RAM,
+                    Memory = singleton.Memory,
+                    Uri = singleton.Uri,
+                    Price = singleton.Price
+                });
+                Phones = new ObservableCollection<Phone>(Phones);
                 saver.Save(Phones);
-                SelectedPhone = null;
             }
             else
             {
                 if (SelectedLanguage == 0)
                 {
-                    MessageBox.Show("Select phone!");
+                    MessageBox.Show("Cannot add a phone in filter mode. Cancel all filters!");
                 }
                 else
                 {
-                    MessageBox.Show("Выберите телефон!");
+                    MessageBox.Show("Невозможно добавить телефон в режиме фильтрации. Отмените все фильтры!");
                 }
             }
         }
 
-        private void Copy(object a)
+        private void Update(object a)
         {
-            if(selectedPhone != null)
+
+            if (selectedManufacturer == 0 && selectedMemory == 0 && selectedPrice == 0 && selectedOS == 0 && selectedRAM == 0)
             {
-                Phones.Add(new Phone
+                if (SelectedPhone != null)
                 {
-                    Manufacturer = SelectedPhone.Manufacturer,
-                    Model = SelectedPhone.Model,
-                    OperatingSystem = SelectedPhone.OperatingSystem,
-                    Processor = SelectedPhone.Processor,
-                    RAM = SelectedPhone.RAM,
-                    Memory= SelectedPhone.Memory,
-                    Price = SelectedPhone.Price,
-                    Uri = SelectedPhone.Uri
-                });
-               Phones = new ObservableCollection<Phone>(Phones);
-                saver.Save(Phones);
-                SelectedPhone = null;
-            }
-            else
-            {
-                if(SelectedLanguage == 0)
-                {
-                    MessageBox.Show("Select phone!");
+                    Singleton singleton = Singleton.GetInstance();
+                    singleton.Loc = LocalisationProp;
+                    singleton.Manufacturer = SelectedPhone.Manufacturer;
+                    singleton.Model = SelectedPhone.Model;
+                    singleton.OperatingSystem = SelectedPhone.OperatingSystem;
+                    singleton.Processor = SelectedPhone.Processor;
+                    switch (SelectedPhone.RAM)
+                    {
+                        case 1:
+                            singleton.RAM = 0;
+                            break;
+                        case 2:
+                            singleton.RAM = 1;
+                            break;
+                        case 3:
+                            singleton.RAM = 2;
+                            break;
+                        case 4:
+                            singleton.RAM = 3;
+                            break;
+                        case 6:
+                            singleton.RAM = 4;
+                            break;
+                        case 8:
+                            singleton.RAM = 5;
+                            break;
+                        case 10:
+                            singleton.RAM = 6;
+                            break;
+                    }
+                    switch(SelectedPhone.Memory)
+                    {
+                        case 8:
+                            singleton.Memory = 0;
+                            break;
+                        case 16:
+                            singleton.Memory = 1;
+                            break;
+                        case 32:
+                            singleton.Memory = 2;
+                            break;
+                        case 64:
+                            singleton.Memory = 3;
+                            break;
+                        case 128:
+                            singleton.Memory = 4;
+                            break;
+                        case 256:
+                            singleton.Memory = 5;
+                            break;
+                        case 512:
+                            singleton.Memory = 6;
+                            break;
+                    }
+                    singleton.Uri = SelectedPhone.Uri;
+                    singleton.Price = SelectedPhone.Price;
+                    WindowUpdate update = new WindowUpdate();
+                    singleton.WindowUpdate = update;
+                    update.ShowDialog();
+                    SelectedPhone.Manufacturer = singleton.Manufacturer;
+                    SelectedPhone.Model = singleton.Model;
+                    // SelectedPhone.Memory = singleton.Memory;
+                    switch (singleton.Memory)
+                    {
+                        case 0:
+                            SelectedPhone.Memory = 8;
+                            break;
+                        case 1:
+                            SelectedPhone.Memory = 16;
+                            break;
+                        case 2:
+                            SelectedPhone.Memory = 32;
+                            break;
+                        case 3:
+                            SelectedPhone.Memory = 64;
+                            break;
+                        case 4:
+                            SelectedPhone.Memory = 128;
+                            break;
+                        case 5:
+                            SelectedPhone.Memory = 256;
+                            break;
+                        case 6:
+                            SelectedPhone.Memory = 512;
+                            break;
+                    }
+                    SelectedPhone.Processor = singleton.Processor;
+                    SelectedPhone.OperatingSystem = singleton.OperatingSystem;
+                    SelectedPhone.Price = singleton.Price;
+                    SelectedPhone.Uri = singleton.Uri;
+                    //SelectedPhone.RAM = singleton.RAM;
+                    switch (singleton.RAM)
+                    {
+                        case 0:
+                            SelectedPhone.RAM = 1;
+                            break;
+                        case 1:
+                            SelectedPhone.RAM = 2;
+                            break;
+                        case 2:
+                            SelectedPhone.RAM = 3;
+                            break;
+                        case 3:
+                            SelectedPhone.RAM = 4;
+                            break;
+                        case 4:
+                            SelectedPhone.RAM = 6;
+                            break;
+                        case 5:
+                            SelectedPhone.RAM = 8;
+                            break;
+                        case 6:
+                            SelectedPhone.RAM = 10;
+                            break;
+                    }
+
+                    saver.Save(Phones);
+                    SelectedPhone = null;
                 }
                 else
                 {
-                    MessageBox.Show("Выберите телефон!");
+                    if (SelectedLanguage == 0)
+                    {
+                        MessageBox.Show("Select phone!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Выберите телефон!");
+                    }
+                }
+            }
+            else
+            {
+                if (SelectedLanguage == 0)
+                {
+                    MessageBox.Show("Cannot update a phone in filter mode. Cancel all filters!");
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно обновить телефон в режиме фильтрации. Отмените все фильтры!");
+                }
+            }
+
+        }
+
+        private void Copy(object a)
+        {
+            if (selectedManufacturer == 0 && selectedMemory == 0 && selectedPrice == 0 && selectedOS == 0 && selectedRAM == 0)
+            {
+                if (selectedPhone != null)
+                {
+                    Phones.Add(new Phone
+                    {
+                        Manufacturer = SelectedPhone.Manufacturer,
+                        Model = SelectedPhone.Model,
+                        OperatingSystem = SelectedPhone.OperatingSystem,
+                        Processor = SelectedPhone.Processor,
+                        RAM = SelectedPhone.RAM,
+                        Memory = SelectedPhone.Memory,
+                        Price = SelectedPhone.Price,
+                        Uri = SelectedPhone.Uri
+                    });
+                    Phones = new ObservableCollection<Phone>(Phones);
+                    saver.Save(Phones);
+                    SelectedPhone = null;
+                }
+                else
+                {
+                    if (SelectedLanguage == 0)
+                    {
+                        MessageBox.Show("Select phone!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Выберите телефон!");
+                    }
+                }
+            }
+            else
+            {
+                if (SelectedLanguage == 0)
+                {
+                    MessageBox.Show("Cannot copy a phone in filter mode. Cancel all filters!");
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно создать копию телефона в режиме фильтрации. Отмените все фильтры!");
                 }
             }
         }
 
         private void Delete(object a)
         {
-            Phones.Remove(SelectedPhone);
-            Phones = new ObservableCollection<Phone>(Phones);
-            saver.Save(Phones);
+            if (selectedManufacturer == 0 && selectedMemory == 0 && selectedPrice == 0 && selectedOS == 0 && selectedRAM == 0)
+            {
+                Phones.Remove(SelectedPhone);
+                Phones = new ObservableCollection<Phone>(Phones);
+                saver.Save(Phones);
+            }
+            else
+            {
+                if (SelectedLanguage == 0)
+                {
+                    MessageBox.Show("Cannot delete a phone in filter mode. Cancel all filters!");
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно удaлить телефон в режиме фильтрации. Отмените все фильтры!");
+                }
+            }
         }
 
 

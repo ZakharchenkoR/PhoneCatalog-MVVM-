@@ -38,7 +38,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Button.Foreground" Value="White"></Setter>
+        <Setter Property="Button.Foreground" Value="Black"></Setter>
         <Setter Property="Button.BorderBrush" >
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">

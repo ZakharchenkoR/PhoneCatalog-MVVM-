@@ -38,21 +38,23 @@
             <Menu Grid.Column="0" VerticalAlignment="Center" 
                   HorizontalAlignment="Center" Margin="10,4">
                 <MenuItem Header="{Binding MainViewModel.LocalisationProp.Catalog}">
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.NewPhone}"  >
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.NewPhone}" Header="{Binding MainViewModel.LocalisationProp.NewPhone}"  >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding MainViewModel.NewPhoneCommand}"  />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </MenuItem>
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Save}" >
+                    <Separator></Separator>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Save}" Header="{Binding MainViewModel.LocalisationProp.Save}" >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding MainViewModel.SaveData}"  />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </MenuItem>
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Exit}" >
+                    <Separator></Separator>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Exit}" Header="{Binding MainViewModel.LocalisationProp.Exit}" >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding MainViewModel.ClosingCommand}"  />
@@ -65,12 +67,17 @@
             <Menu Grid.Column="1" VerticalAlignment="Center" 
                   HorizontalAlignment="Center" Margin="10,4,10,4" Height="18" >
                 <MenuItem Header="{Binding MainViewModel.LocalisationProp.Sort}">
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Manufacturer}" Command="{Binding MainViewModel.SortManufacturer}"></MenuItem>
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Model}"  Command="{Binding MainViewModel.SortModel}"></MenuItem>
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.OS}" Command="{Binding MainViewModel.SortOS}"></MenuItem>
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.RAM}" Command="{Binding MainViewModel.SortRAM}"></MenuItem>
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Memory}" Command="{Binding MainViewModel.SortMemory}"></MenuItem>
-                    <MenuItem Header="{Binding MainViewModel.LocalisationProp.Price}" Command="{Binding MainViewModel.SortPrice}"></MenuItem>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Manufacturer}" Header="{Binding MainViewModel.LocalisationProp.Manufacturer}" Command="{Binding MainViewModel.SortManufacturer}"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Model}" Header="{Binding MainViewModel.LocalisationProp.Model}"  Command="{Binding MainViewModel.SortModel}"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.OS}" Header="{Binding MainViewModel.LocalisationProp.OS}" Command="{Binding MainViewModel.SortOS}"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.RAM}" Header="{Binding MainViewModel.LocalisationProp.RAM}" Command="{Binding MainViewModel.SortRAM}"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Memory}" Header="{Binding MainViewModel.LocalisationProp.Memory}" Command="{Binding MainViewModel.SortMemory}"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Price}" Header="{Binding MainViewModel.LocalisationProp.Price}" Command="{Binding MainViewModel.SortPrice}"></MenuItem>
                 </MenuItem>
             </Menu>
             <!--Slider-->
@@ -157,13 +164,13 @@
                     <ComboBoxItem HorizontalContentAlignment="Center" VerticalContentAlignment="Center">...</ComboBoxItem>
                     <ComboBoxItem>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Pictures/apple.png" Width="17" Height="17"></Image>
+                            <Image Source="../Pictures/apic.png" Width="17" Height="17"></Image>
                             <TextBlock Margin="10,0,0,0">Apple</TextBlock>
                         </StackPanel>
                     </ComboBoxItem>
                     <ComboBoxItem>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Pictures/samsung.jpg" Width="17" Height="17"></Image>
+                            <Image Source="../Pictures/sam.png" Width="17" Height="17"></Image>
                             <TextBlock Margin="10,0,0,0">Samsung</TextBlock>
                         </StackPanel>
                     </ComboBoxItem>
@@ -274,9 +281,11 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Command="{Binding MainViewModel.CopyCommand}" Header="{Binding MainViewModel.LocalisationProp.Copy}"></MenuItem>
-                            <MenuItem Command="{Binding MainViewModel.UpdateCommand}" Header="{Binding MainViewModel.LocalisationProp.Update}"></MenuItem>
-                            <MenuItem Command="{Binding MainViewModel.DeleteCommand}" Header="{Binding MainViewModel.LocalisationProp.Delete}"></MenuItem>
+                            <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Copy}" Command="{Binding MainViewModel.CopyCommand}" Header="{Binding MainViewModel.LocalisationProp.Copy}"></MenuItem>
+                            <Separator></Separator>
+                            <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Update}" Command="{Binding MainViewModel.UpdateCommand}" Header="{Binding MainViewModel.LocalisationProp.Update}"></MenuItem>
+                            <Separator></Separator>
+                            <MenuItem ToolTip="{Binding MainViewModel.LocalisationProp.Delete}" Command="{Binding MainViewModel.DeleteCommand}" Header="{Binding MainViewModel.LocalisationProp.Delete}"></MenuItem>
                         </ContextMenu>
                     </ListBox.ContextMenu>
                 </ListBox>
