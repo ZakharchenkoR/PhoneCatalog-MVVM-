@@ -255,7 +255,7 @@
                                 <Image Width="{Binding ElementName=_slider,Path= Value}" Height="{Binding ElementName= _slider,Path= Value}"
                                        Source="{Binding Uri}">
                                 </Image>
-                                <TextBlock Text="{Binding Manufacturer}" FontSize="20"></TextBlock>
+                                <TextBlock Name="_parameter" Text="{Binding Manufacturer}" FontSize="20"></TextBlock>
                                 <TextBlock Text="{Binding Model}" FontSize="15"></TextBlock>
                                 <TextBlock Text="{Binding OperatingSystem}" FontSize="12"></TextBlock>
                                 <TextBlock Text="{Binding Processor}" FontSize="12"></TextBlock>
@@ -326,7 +326,6 @@
 
                     </DataGrid.Columns>
                 </DataGrid>-->
-
                 <!--Bottom Menu-->
                 <Border Margin="1" Grid.Row="1" BorderBrush="Gray" BorderThickness="1">
                     <Grid>

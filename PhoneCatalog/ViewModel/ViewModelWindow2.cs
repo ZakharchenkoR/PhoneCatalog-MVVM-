@@ -97,30 +97,7 @@ namespace PhoneCatalog.ViewModel
             get => ram;
             set
             {
-                switch(value)
-                {
-                    case 0:
-                        ram = 1;
-                        break;
-                    case 1:
-                        ram = 2;
-                        break;
-                    case 2:
-                        ram = 3;
-                        break;
-                    case 3:
-                        ram = 4;
-                        break;
-                    case 4:
-                        ram = 6;
-                        break;
-                    case 5:
-                        ram = 8;
-                        break;
-                    case 6:
-                        ram = 10;
-                        break;
-                }
+                ram = value;
                 Notify();
             }
         }
@@ -130,30 +107,7 @@ namespace PhoneCatalog.ViewModel
             get => memory;
             set
             {
-                switch (value)
-                {
-                    case 0:
-                        memory = 8;
-                        break;
-                    case 1:
-                        memory = 16;
-                        break;
-                    case 2:
-                        memory = 32;
-                        break;
-                    case 3:
-                        memory = 64;
-                        break;
-                    case 4:
-                        memory = 128;
-                        break;
-                    case 5:
-                        memory = 256;
-                        break;
-                    case 6:
-                        memory = 512;
-                        break;
-                }
+                memory = value;
                 Notify();
             }
         }

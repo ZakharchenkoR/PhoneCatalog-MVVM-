@@ -169,7 +169,7 @@ namespace PhoneCatalog.ViewModel
         public ICommand SortModel { get; set; }
         public ICommand SaveData { get; set; }
         public ICommand LoadData { get; set; }
-        public ICommand ReturnFiltersCommand { get; set; }
+        public ICommand ReturnFiltersCommand { get; set; }     
         #endregion
 
         public MainViewModel(ISaver saver, ILoader loader, ISaverStyle saverStyle, ILoaderStyle loaderStyle)
@@ -177,7 +177,6 @@ namespace PhoneCatalog.ViewModel
             this.loader = loader;
             this.saver = saver;
             filters = new Filters(loader);
-            phones = Phone.GetPhones();
             LocalisationProp = new Localisation();
             LoadData = new RelayCommand(DataLoad);
             SaveData = new RelayCommand(x => saver.Save(Phones));
@@ -208,6 +207,19 @@ namespace PhoneCatalog.ViewModel
         }
 
         #region Metods
+
+        private void FindSelectedItem(object parametr)
+        {
+            foreach (var i in Phones)
+            {
+                if (parametr as string == i.Manufacturer)
+                {
+                    SelectedPhone = i;
+                    break;
+                }
+            }
+        }
+
         private void ReturnFilters (object a)
         {
             SelectedPrice = 0;
@@ -295,14 +307,64 @@ namespace PhoneCatalog.ViewModel
                 Window1 _window = new Window1();
                 singleton.Window = _window;
                 _window.ShowDialog();
+                int _memory = 0;
+                switch (singleton.Memory)
+                {
+                    case 0:
+                        _memory = 8;
+                        break;
+                    case 1:
+                        _memory = 16;
+                        break;
+                    case 2:
+                        _memory = 32;
+                        break;
+                    case 3:
+                        _memory = 64;
+                        break;
+                    case 4:
+                        _memory = 128;
+                        break;
+                    case 5:
+                        _memory = 256;
+                        break;
+                    case 6:
+                        _memory = 512;
+                        break;
+                }
+                int _ram = 0;
+                switch (singleton.RAM)
+                {
+                    case 0:
+                        _ram = 1;
+                        break;
+                    case 1:
+                        _ram = 2;
+                        break;
+                    case 2:
+                        _ram = 3;
+                        break;
+                    case 3:
+                        _ram = 4;
+                        break;
+                    case 4:
+                        _ram = 6;
+                        break;
+                    case 5:
+                        _ram = 8;
+                        break;
+                    case 6:
+                        _ram = 10;
+                        break;
+                }
                 Phones.Add(new Phone
                 {
                     Manufacturer = singleton.Manufacturer,
                     Model = singleton.Model,
                     OperatingSystem = singleton.OperatingSystem,
                     Processor = singleton.Processor,
-                    RAM = singleton.RAM,
-                    Memory = singleton.Memory,
+                    RAM = _ram,
+                    Memory = _memory,               
                     Uri = singleton.Uri,
                     Price = singleton.Price
                 });
@@ -359,7 +421,7 @@ namespace PhoneCatalog.ViewModel
                             singleton.RAM = 6;
                             break;
                     }
-                    switch(SelectedPhone.Memory)
+                    switch (SelectedPhone.Memory)
                     {
                         case 8:
                             singleton.Memory = 0;
@@ -390,7 +452,6 @@ namespace PhoneCatalog.ViewModel
                     update.ShowDialog();
                     SelectedPhone.Manufacturer = singleton.Manufacturer;
                     SelectedPhone.Model = singleton.Model;
-                    // SelectedPhone.Memory = singleton.Memory;
                     switch (singleton.Memory)
                     {
                         case 0:
@@ -419,7 +480,6 @@ namespace PhoneCatalog.ViewModel
                     SelectedPhone.OperatingSystem = singleton.OperatingSystem;
                     SelectedPhone.Price = singleton.Price;
                     SelectedPhone.Uri = singleton.Uri;
-                    //SelectedPhone.RAM = singleton.RAM;
                     switch (singleton.RAM)
                     {
                         case 0:
@@ -471,7 +531,6 @@ namespace PhoneCatalog.ViewModel
                     MessageBox.Show("Невозможно обновить телефон в режиме фильтрации. Отмените все фильтры!");
                 }
             }
-
         }
 
         private void Copy(object a)
