@@ -323,6 +323,7 @@ namespace PhoneCatalog.Infrastructure
         }
 
 
+
         public void RU()
         {
             BlackStyle = "Темная тема";
