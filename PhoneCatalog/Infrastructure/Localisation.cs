@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -291,71 +292,65 @@ namespace PhoneCatalog.Infrastructure
             }
         }
         #endregion
-        public void LocalosationAdd()
-        {
-            if(English == true)
-            {
-                BlackStyle = "Black Style";
-                WhiteStyle = "White Style";
-                Engl = "ENG";
-                RUS = "RUS";
-                Manufacturer = "Manufacturer";
-                NewPhone = "Add New Phone";
-                Update = "Update";
-                Copy = "Copy";
-                Sort = "Sorting";
-                Model = "Model";
-                Price = "Price";
-                Memory = "Memory";
-                RAM = "RAM";
-                OS = "OS";
-                Catalog = "Catalog";
-                Exit = "Exit";
-                Save = "Save";
-                Processor = "Processor";
-                Pictures = "Pictures";
-                CatalogP = "Phones Catalog";
-                ollRAM = "Oll phones";
-                Cancel = "Cancel";
-                Filter = "Choose";
-                Delete = "Delete";
-            }
-            else
-            {
-                BlackStyle = "Темная тема";
-                WhiteStyle = "Светлая тема";
-                Engl = "АНГ";
-                RUS = "Рус";
-                Manufacturer = "Производитель";
-                NewPhone = "Добавить Телефон";
-                Update = "Обновить";
-                Copy = "Скопировать";
-                Sort = "Сортировки";
-                Model = "Модель";
-                Price = "Цена";
-                Memory = "Память телефона";
-                RAM = "Память оперативная";
-                OS = "Операционная система";
-                Catalog = "Каталог";
-                Exit = "Выйти";
-                Save = "Сохранить";
-                Processor = "Процесор";
-                Pictures = "Картинка";
-                CatalogP = "Каталог Телефонов";
-                ollRAM = "Все телефоны";
-                Cancel = "Отменить";
-                Filter = "Выбрать";
-                Delete = "Удалить";
 
-            }
+        public void ENG()
+                {
+
+                    BlackStyle = "Black Style";
+                    WhiteStyle = "White Style";
+                    Engl = "ENG";
+                    RUS = "RUS";
+                    Manufacturer = "Manufacturer";
+                    NewPhone = "Add New Phone";
+                    Update = "Update";
+                    Copy = "Copy";
+                    Sort = "Sorting";
+                    Model = "Model";
+                    Price = "Price";
+                    Memory = "Memory";
+                    RAM = "RAM";
+                    OS = "OS";
+                    Catalog = "Catalog";
+                    Exit = "Exit";
+                    Save = "Save";
+                    Processor = "Processor";
+                    Pictures = "Pictures";
+                    CatalogP = "Phones Catalog";
+                    ollRAM = "Oll phones";
+                    Cancel = "Cancel";
+                    Filter = "Choose";
+                    Delete = "Delete";
         }
 
-       
 
-        public Localisation()
+        public void RU()
         {
-            LocalosationAdd();
+            BlackStyle = "Темная тема";
+            WhiteStyle = "Светлая тема";
+            Engl = "АНГ";
+            RUS = "Рус";
+            Manufacturer = "Производитель";
+            NewPhone = "Добавить Телефон";
+            Update = "Обновить";
+            Copy = "Скопировать";
+            Sort = "Сортировки";
+            Model = "Модель";
+            Price = "Цена";
+            Memory = "Память телефона";
+            RAM = "Память оперативная";
+            OS = "Операционная система";
+            Catalog = "Каталог";
+            Exit = "Выйти";
+            Save = "Сохранить";
+            Processor = "Процесор";
+            Pictures = "Картинка";
+            CatalogP = "Каталог Телефонов";
+            ollRAM = "Все телефоны";
+            Cancel = "Отменить";
+            Filter = "Выбрать";
+            Delete = "Удалить";
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void Notify([CallerMemberName] string propName = "")

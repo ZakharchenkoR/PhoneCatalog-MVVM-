@@ -20,7 +20,7 @@ namespace PhoneCatalog.ViewModel
         ISaver saver;
         Filters filters;
         ObservableCollection<Phone> phones;
-        Localisation localisationProp;
+        Localisation loc = new Localisation();
         int selectedStyle;
         int selectedLanguage;
         int selectedRAM = 0;
@@ -32,12 +32,13 @@ namespace PhoneCatalog.ViewModel
 
         #region Properties
 
+
         public Localisation LocalisationProp
         {
-            get => localisationProp;
+            get => loc;
             set
             {
-                localisationProp = value;
+                loc = value;
                 Notify();
             }
         }
@@ -177,7 +178,7 @@ namespace PhoneCatalog.ViewModel
             this.loader = loader;
             this.saver = saver;
             filters = new Filters(loader);
-            LocalisationProp = new Localisation();
+            loc.ENG();
             LoadData = new RelayCommand(DataLoad);
             SaveData = new RelayCommand(x => saver.Save(Phones));
             SaveStyle = new RelayCommand(x => saverStyle.Save(SelectedStyle));
@@ -303,7 +304,7 @@ namespace PhoneCatalog.ViewModel
             if (selectedManufacturer == 0 && selectedMemory == 0 && selectedPrice == 0 && selectedOS == 0 && selectedRAM == 0)
             {
                 Singleton singleton = Singleton.GetInstance();
-                singleton.Loc = localisationProp;
+                singleton.Loc = loc;
                 Window1 _window = new Window1();
                 singleton.Window = _window;
                 _window.ShowDialog();
@@ -607,13 +608,12 @@ namespace PhoneCatalog.ViewModel
             switch (SelectedLanguage)
             {
                 case 0:
-                    LocalisationProp.English = false;
-                    LocalisationProp.LocalosationAdd();
+                    loc.RU();
                     Notify();
                     break;
                 case 1:
-                    LocalisationProp.English = true;
-                    LocalisationProp.LocalosationAdd();
+                  
+                    loc.ENG();
                     Notify();
                     break;
             }
